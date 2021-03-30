@@ -3,4 +3,12 @@ export declare namespace App {
     accessToken: string;
     refreshToken: string;
   }
+  interface TokenPayLoad{
+   readonly id: number;
+   readonly login: string;
+   readonly exp: number;
+   readonly iat: number;
+
+
+  }
 }
