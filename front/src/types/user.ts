@@ -8,7 +8,7 @@ export declare namespace User{
     }
   }
 
-  interface Data { //данныекоторые получаем
+  interface Data { //данные которые получаем
     id: number;
     login: string;
     email: string;
