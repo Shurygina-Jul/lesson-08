@@ -14,5 +14,7 @@ export const Header: React.FC<Props> = () => (
     >
      Book Catalog
     </a>
+    <div className={b('link')}> Войти</div>
+    <div className={b('link')}> Регистрация</div>
   </header>
 )
