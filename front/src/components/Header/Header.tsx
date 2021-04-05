@@ -9,12 +9,8 @@ const b = block('header')
 
 export const Header: React.FC<Props> = () => (
   <header className={b()}>
-    <a className={b('title')}
-      href={'/'}
-    >
-     Book Catalog
-    </a>
-    <div className={b('link')}> Войти</div>
-    <div className={b('link')}> Регистрация</div>
+    <a className={b('title')} href={'/'}> Каталог </a>
+    <a className ={b('field')} href={'http://localhost:3000/auth'}>Войти</a>
+    <a className ={b('field')} href={'http://localhost:3000/registration'}> Регистрация</a>
   </header>
 )

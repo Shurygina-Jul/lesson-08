@@ -10,7 +10,7 @@ interface Props {
 const b = block('registration-page')
 
 
-export const AuthPage: React.FC<Props> = () => {
+export const RegistrationPage: React.FC<Props> = () => {
     return (
       <div className={b()}>
         <RegistrationForm/>

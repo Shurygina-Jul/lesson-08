@@ -30,6 +30,11 @@ export const appReducer: Reducer<AppState.State, AppState.Action.All> = (state =
         loading: false,
         errorText: action.payload
       }
+      // case AppAction.SuccessRegistration:
+      // return {
+      //   ...state,
+      //   loading: false
+      // }
     default:
       return state
   }

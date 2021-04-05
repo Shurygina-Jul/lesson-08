@@ -1,9 +1,29 @@
-.header {
-  margin: 0 auto;
-  max-width: 1100px;
-  width: 100%;
 
-  &__link{
+  :root {
+    --header-color:#F5DEB3;
+    --footer-color:#1f373d;
+    --content-color:#FFF8DC;
+    --text-color: #1f373d;
+  }
+ .header {
+  padding: 20px;
+  margin: 0;
+  height: 100%px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+   align-items: center;
+   background-color:var( --header-color);
+   font-family: "Roboto Condensed", sans-serif;
+   background: linear-gradient(180deg, var( --header-color), var( --content-color));
+
+     &__field{
+       color: #000;
+       text-decoration: none;
+       align-self: center;
+       font-size: 13px;
+       padding: 10px 15px;
+       transition: background 0.2s linear;
 
   }
     &__title {
@@ -12,6 +32,10 @@
     font-size: 2em;
     text-decoration: none;
     position: absolute;
+    font-size: 200%;
+     color:var( --text-color);
+     letter-spacing: 3px;
+     text-transform:uppercase;
 
 
 

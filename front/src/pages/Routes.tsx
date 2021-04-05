@@ -10,6 +10,7 @@ import {Author} from '../components/Guids/Author/Author'
 import {Genre} from '../components/Guids/Genre/Genre'
 import { Language } from '../components/Guids/Language/Language'
 import { Publisher } from '../components/Guids/Publisher/Publisher'
+import { RegistrationPage } from './RegistrationPage/RegistrationPage'
 
 
 
@@ -21,6 +22,7 @@ export const Routes: React.FC<Props> = () => {
     <Switch>
       <Redirect exact from={'/'} to={'/catalog'} />
       <Page path={'/auth'} layout={AuthLayout} component={AuthPage} />
+      <Page path={'/registration'} layout={AuthLayout} component={RegistrationPage} />
       <Page secured path={'/catalog'} component={CatalogPage} />
       <Page exact secured path={'/ref'} component={() => 'Guides'} />
       <Page secured path={'/ref/authors'} component={Author} />
