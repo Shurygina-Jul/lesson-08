@@ -1,39 +1,35 @@
 import block from 'bem-cn'
 import { useFormik } from 'formik'
-import React, { MouseEventHandler } from 'react'
-import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux'
+import React, { MouseEventHandler, useState } from 'react'
 import * as Yup from 'yup'
 import { User } from '../../../types/user'
 import { Input } from '../../Input/Input'
 import { InputType } from '../../Input/InputType'
 import { Button } from '../../Button/Button'
-import { AppState } from '../../../store/app/types'
-import { RootState } from '../../../store/types'
-import { appActions } from '../../../store/app/actions'
 import './RegistrationForm.css'
+import { apiUserRegistration } from '../../../api/user';
+import { browserHistory } from '../../../browserHistory';
+import { BaseComponentProps } from '../../../types/base'
+import { TypeButton } from '../../Button/TypeButton'
 
-interface StateProps {
-  loading: boolean;
-  errorText: string;
+
+interface Props extends BaseComponentProps {
 }
 
-interface DispatchProps extends AppState.ActionThunk {}
-
-interface OwnProps {
-}
-
-type Props = OwnProps & StateProps & DispatchProps
 const b = block('registration-form')
 
 
 const schema: Yup.SchemaOf<User.Create.Param> = Yup.object().shape(({
-  login: Yup.string().required(),
-  email:Yup.string().required(),
-  password: Yup.string().required(),
-  passwordConfirm: Yup.string().required()
+  login: Yup.string().required('Обязательное'),
+  email:Yup.string().email('Невалидный email').required('Обязательное'),
+  password: Yup.string().required('Обязательное'),
+  passwordConfirm: Yup.string().required('Обязательное')
+  .test('match', 'Пароли не совпадают', (value, context) => value === context.parent.password)
 }))
 
-const RegistrationFormPresenter:React.FC<Props> = ({ loading, errorText, appRegistration }) => {
+export const RegistrationForm: React.FC<Props> = ({ className = '' }) => {
+  const [loading, setLoading] = useState<boolean>(false)
+  const [errorText, setErrorText] = useState<string>('')
   const { errors, values, submitForm, handleChange } = useFormik<User.Create.Param>({
     initialValues: {
       login: '',
@@ -43,18 +39,27 @@ const RegistrationFormPresenter:React.FC<Props> = ({ loading, errorText, appRegi
     },
     validationSchema: schema,
     onSubmit: async (fields) => {
-      await appRegistration(fields)
+      try {
+        setLoading(true)
+        await apiUserRegistration(fields)
+        browserHistory.push('/auth')
+      } catch (err) {
+        setErrorText(err.message)
+      } finally {
+        setLoading(false)
+      }
     }
   })
+
   const handlerSubmit: MouseEventHandler<HTMLButtonElement> = event => {
     event.preventDefault()
     submitForm().catch()
   }
 
   return (
-<form className={b()}>
-  <h2 className={b('title')}>Регистрация</h2>
-  <Input
+    <form className={b({}).mix(className)}>
+      <h2 className={b('title')}>Регистрация</h2>
+      <Input
         className={b('field')}
         label={'Имя'}
         name={'login'}
@@ -63,18 +68,16 @@ const RegistrationFormPresenter:React.FC<Props> = ({ loading, errorText, appRegi
         error={errors?.login}
         disabled={loading}
       />
- <Input
-       className={b('field')}
-        label={'email'}
+      <Input
+        className={b('field')}
+        label={'Email'}
         name={'email'}
-        htmlType={InputType.Email}
         value={values.email}
         onChange={handleChange}
         error={errors?.email}
         disabled={loading}
       />
-
-<Input
+      <Input
         className={b('field')}
         label={'Пароль'}
         name={'password'}
@@ -84,30 +87,30 @@ const RegistrationFormPresenter:React.FC<Props> = ({ loading, errorText, appRegi
         error={errors?.password}
         disabled={loading}
       />
-<Input
+      <Input
         className={b('field')}
-        label={'Подтвердить Пароль'}
+        label={'Подтверждение пароля'}
         name={'passwordConfirm'}
-        htmlType={InputType.PasswordConfirm}
+        htmlType={InputType.Password}
         value={values.passwordConfirm}
         onChange={handleChange}
         error={errors?.passwordConfirm}
         disabled={loading}
       />
-{!!errorText && <p className={'error'}>{errorText}</p>}
-      <div>
-        <Button text={'Регистрация'} disabled={loading} />
-        <Button text={'Войти'} onClick={handlerSubmit} disabled={loading} />
+      {!!errorText && (
+        <p className={b('error')}>
+          {errorText}
+        </p>
+      )}
+      <div className={b('buttons')}>
+        <Button
+          onClick={handlerSubmit}
+          loading={loading}
+          type={TypeButton.Primary}
+        >
+          Зарегистрироваться
+        </Button>
       </div>
     </form>
   )
 }
-
-const mapStateToProps: MapStateToProps<StateProps, OwnProps, RootState.State> = ({ app }) => ({
-  loading: app.loading,
-  errorText: app.errorText
-})
-
-const mapDispatchToProp: MapDispatchToProps<DispatchProps, OwnProps> = { ...appActions }
-
-export const RegistrationForm = connect(mapStateToProps, mapDispatchToProp)(RegistrationFormPresenter)

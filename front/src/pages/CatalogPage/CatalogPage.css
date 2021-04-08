@@ -1,1 +1,24 @@
-.catalog-page {}
+.catalog-page {
+  margin: 0;
+  font-family: san-serif;
+
+
+  &__card-set {
+    background-color: silver;
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fill, minmax(200px, 4fr));
+      padding: 20px;
+      gap:20px;
+  }
+  &__card {
+    padding: 8px 20px;
+    background-color: #fff;
+  }
+   &__link {
+     text-decoration: none;
+     color: black;
+
+
+   }
+}
