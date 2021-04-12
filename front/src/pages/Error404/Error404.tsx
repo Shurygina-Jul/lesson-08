@@ -1,9 +1,11 @@
 import block from 'bem-cn'
 import React from 'react'
+import { BasePageProps } from '../../types/base'
 import './Error404.css'
 
-interface Props {
+interface Props extends BasePageProps {
 }
+
 
 const b = block('error404')
 

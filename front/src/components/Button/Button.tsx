@@ -7,11 +7,11 @@ import { SpinnerType } from '../Spinner/SpinnerType'
 import './Button.css'
 import { TypeButton } from './TypeButton'
 
+
 interface Props extends BaseComponentProps {
-  text: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
-  htmlType?: 'submit' | 'reset' | 'button'
+  htmlType?: 'submit' | 'reset' | 'button';
   type?: TypeButton;
   loading?: boolean;
 }
@@ -36,24 +36,26 @@ export const Button: React.FC<Props> = ({
     }
   }, [type])
 
-  const visibleSpinner = useMemo<boolean>(() => loading && type !== TypeButton.Link, [type, loading])
+  const visibleSpinner = useMemo<boolean>(() => loading && type !==TypeButton.Link, [type, loading])
+
   return (
     <button
-    className={b({ [type]: true }).mix(className)}
-    onClick={onClick}
-    disabled={disabled || loading}
-    type={htmlType}
-  >
-    {visibleSpinner && (
-      <Spinner
-        className={b('spinner')}
-        type={spinnerType}
-        size={24}
-      />
-    )}
-    <span className={b('children')}>
-      {children}
-    </span>
-  </button>
+      className={b({ [type]: true }).mix(className)}
+      onClick={onClick}
+      disabled={disabled || loading}
+      type={htmlType}
+    >
+      {visibleSpinner && (
+        <Spinner
+          className={b('spinner')}
+          type={spinnerType}
+          size={24}
+        />
+      )}
+      <span className={b('children')}>
+        {children}
+      </span>
+    </button>
   )
 }
+
