@@ -14,6 +14,6 @@ const b = block('auth-page')
 export const AuthPage: React.FC<Props> = () => {
     return (
       <div className={b()}>
-        <AuthForm/>
+         <AuthForm className={b('form')} />
         </div>
     )}

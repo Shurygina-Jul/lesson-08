@@ -7,10 +7,10 @@ import { Input } from '../../Input/Input'
 import { InputType } from '../../Input/InputType'
 import { Button } from '../../Button/Button'
 import './RegistrationForm.css'
-import { apiUserRegistration } from '../../../api/user';
 import { browserHistory } from '../../../browserHistory';
 import { BaseComponentProps } from '../../../types/base'
 import { TypeButton } from '../../Button/TypeButton'
+import { apiUserCreate } from '../../../api/user'
 
 
 interface Props extends BaseComponentProps {
@@ -41,7 +41,7 @@ export const RegistrationForm: React.FC<Props> = ({ className = '' }) => {
     onSubmit: async (fields) => {
       try {
         setLoading(true)
-        await apiUserRegistration(fields)
+        await apiUserCreate(fields)
         browserHistory.push('/auth')
       } catch (err) {
         setErrorText(err.message)

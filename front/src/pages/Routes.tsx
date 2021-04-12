@@ -2,17 +2,14 @@ import React from 'react'
 import { Redirect, Switch } from 'react-router-dom'
 import { Page } from '../components/Page/Page'
 import { AuthLayout } from '../layouts/AuthLayout/AuthLayout'
-import { AboutPage } from './AboutPage/AboutPage'
 import { AuthPage } from './AuthPage/AuthPage'
 import { CatalogPage } from './CatalogPage/CatalogPage'
 import { Error404 } from './Error404/Error404'
-import {Author} from '../components/Guids/Author/Author'
-import {Genre} from '../components/Guids/Genre/Genre'
-import { Language } from '../components/Guids/Language/Language'
-import { Publisher } from '../components/Guids/Publisher/Publisher'
+import { LanguageAllPage } from './LanguageAllPage/LanguageAllPage'
+import { LanguageEditPage } from './LanguageEditPage/LanguageEditPage'
+import { LanguagePage } from './LanguagePage/LanguagePage'
+import { PublisherAllPage } from './PublisherAllPage/PublisherAllPage'
 import { RegistrationPage } from './RegistrationPage/RegistrationPage'
-
-
 
 interface Props {
 }
@@ -21,15 +18,14 @@ export const Routes: React.FC<Props> = () => {
   return (
     <Switch>
       <Redirect exact from={'/'} to={'/catalog'} />
-      <Page path={'/auth'} layout={AuthLayout} component={AuthPage} />
-      <Page path={'/registration'} layout={AuthLayout} component={RegistrationPage} />
+      <Page exact onlyPublic path={'/auth'} layout={AuthLayout} component={AuthPage} />
+      <Page exact onlyPublic path={'/registration'} layout={AuthLayout} component={RegistrationPage} />
       <Page exact secured path={'/catalog'} component={CatalogPage} />
-      <Page exact secured path={'/ref'} component={() => 'Guides'} />
-      <Page secured path={'/ref/authors'} component={Author} />
-      <Page secured path={'/ref/genre'} component={Genre} />
-      <Page secured path={'/ref/languade'} component={Language} />
-      <Page secured path={'/ref/publisher'} component={Publisher} />
-      <Page secured path={'/about'} component={AboutPage} />
+      <Page exact secured path={'/ref/publishers'} component={PublisherAllPage} />
+      <Page exact secured path={'/ref/languages'} component={LanguageAllPage} />
+      <Page exact secured path={'/ref/languages/create'} component={LanguageEditPage} />
+      <Page exact secured path={'/ref/languages/:id'} component={LanguagePage} />
+      <Page exact secured path={'/ref/languages/:id/edit'} component={LanguageEditPage} />
       <Page path={'*'} layout={AuthLayout} component={Error404} />
     </Switch>
   )

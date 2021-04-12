@@ -13,6 +13,6 @@ const b = block('registration-page')
 export const RegistrationPage: React.FC<Props> = () => {
     return (
       <div className={b()}>
-        <RegistrationForm/>
+        <RegistrationForm className={b('form')} />
         </div>
     )}
