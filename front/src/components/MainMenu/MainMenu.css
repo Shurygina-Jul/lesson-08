@@ -1,36 +1,68 @@
 .main-menu {
-  padding: 20px;
-  border: 5px solid #f1f1f1;
-  background: #fff;
-  border-radius: 5px;
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    background-color: var(--main-menu-bg);
 
-  &__h3{
-  margin-bottom: 20px;
-  text-align: center;
-  font-size: 24px;
-  font-weight: normal;
-  color:  #424949;
-  }
-  &__ul{
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    width: 250px;
-  }
-  &__li{
-  border-bottom: 1px solid #eaeaea;
-  padding-bottom: 15px;
-  margin-bottom: 15px;
-  }
+    &__link {
+        flex: 1;
+        display: inline-block;
+        padding: 4px 8px;
+        color: var(--main-menu-text);
+        background-color: var(--main-menu-bg);
+        text-decoration: none;
 
-   &__link{
-    text-decoration: none;
-    color:  #616a6b;
-    display: inline-block;
-   }
+        &_span {
+            cursor: default;
+        }
+
+        &:hover,
+        &.active {
+            color: var(--main-menu-active-text);
+            background-color: var(--main-menu-active-bg);
+        }
+    }
+
+    &__level-0 {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__item-0 {
+
+        &_has-child {
+            padding-right: 4px;
+
+            &:after {
+                content: '';
+                display: inline-block;
+                width: 0.4em;
+                height: 0.4em;
+                margin-left: 8px;
+                border-right: var(--main-menu-text) solid 2px;
+                border-bottom: var(--main-menu-text) solid 2px;
+                transform: translateY(-0.1em) rotate(45deg);
+            }
+        }
+
+        &:hover {
+            > ul {
+                display: block;
+            }
+        }
+    }
+
+    &__level-1 {
+        list-style: none;
+        position: absolute;
+        display: none;
+        z-index: 1;
+    }
+
+    &__item-1 {
+        display: flex;
+    }
 }

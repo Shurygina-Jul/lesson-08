@@ -1,6 +1,9 @@
 import block from 'bem-cn'
-import React from 'react'
+import React, { useCallback } from 'react'
+import { NavLink } from 'react-router-dom'
 import './MainMenu.css'
+import { navigation } from './Navigation'
+import { Navigation } from './types'
 
 interface Props {
 }
@@ -8,14 +11,27 @@ interface Props {
 const b = block('main-menu')
 
 export const MainMenu: React.FC<Props> = () => {
-  return (
+  const renderList = useCallback<(items: Navigation[], level?: number) => React.ReactNode>((
+    items,
+    level = 0
+  ) => items.length ? (
+    <ul className={b(`level-${level}`)}>
+      {items.map(({ text, path, child = [] }) => (
+        <li className={b(`item-${level}`, { 'has-child': child?.length > 0 })}>
+          {path ? (
+            <NavLink className={b('link')} to={path}>{text}</NavLink>
+          ) : (
+            <span className={b('link', { span: true })}>{text}</span>
+          )}
+          {renderList(child, level + 1)}
+        </li>
+      ))}
+    </ul>
+  ) : null, [])
 
-<nav className={b()}>
-<h3 className={b('h3')}>Main Menu</h3>
-    <ul className={b('ul')}>
-    <li className={b('li')}><a className={b('link')} href="/catalog">Catalog</a></li>
-    <li className={b('li')}><a className={b('link')} href="/ref">Guide</a></li>
-     </ul>
-</nav>
+  return (
+    <nav className={b()}>
+      {renderList(navigation)}
+    </nav>
   )
 }

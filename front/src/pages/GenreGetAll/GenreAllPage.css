@@ -1,0 +1,5 @@
+.genre-all-page {
+    &__list {
+        list-style: none;
+    }
+}

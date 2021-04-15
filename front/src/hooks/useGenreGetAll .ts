@@ -1,27 +1,29 @@
 import { useEffect, useState } from 'react'
-import { apiPublisherGetAll } from '../api/publisher'
-import { Publisher } from '../types/publisher'
+import { apiGenreGetAll } from '../api/genre'
+import { Genre } from '../types/genre'
 
-interface UsePublisherGetAll {
-  data: Publisher.Data[],
+
+
+interface UseGenreGetAll {
+  data: Genre.Data[],
   loading: boolean;
   setSearch: (search: string) => void;
 }
 
-export const usePublisherGetAll = (defaultSearch: string = ''): UsePublisherGetAll => {
+export const useGenreGetAll = (defaultSearch: string = ''): UseGenreGetAll => {
   const [loading, setLoading] = useState<boolean>(false)
-  const [data, setData] = useState<Publisher.Data[]>([])
+  const [data, setData] = useState<Genre.Data[]>([])
   const [search, setSearch] = useState<string>(defaultSearch)
 
   useEffect(() => {
-    const params: Publisher.All.Search = {}
+    const params: Genre.All.Search = {}
 
     if (search) {
       params.search = search
     }
 
     setLoading(true)
-    apiPublisherGetAll(params)
+    apiGenreGetAll(params)
       .then(setData)
       .catch(err => {
         console.error(err)
