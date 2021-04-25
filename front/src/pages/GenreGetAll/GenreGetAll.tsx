@@ -47,6 +47,7 @@ export const GenreAllPage: React.FC<Props> = () => {
           <p>Ничего не найдено</p>
         )}
       </div>
+
       <Link to={`/ref/genres/create`}>Добавить жанр</Link>
     </Card>
   )

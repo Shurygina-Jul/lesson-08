@@ -13,7 +13,7 @@ export const Error404: React.FC<Props> = () => {
   return (
     <div className={b()}>
       <div>
-  <aside><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4424790/Mirror.png" alt="404 Image" />
+  <aside><img className={b('img')} src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4424790/Mirror.png" alt="404 Image" />
   </aside>
   <main>
     <h1>Sorry!</h1>

@@ -1,1 +1,13 @@
-.about-page {}
+.all-page {
+  display: flex;
+  flex-direction: row;
+   justify-content: space-around;
+  align-items: center;
+  padding: 40px;
+
+
+  &__link{
+    text-decoration: none;
+    color: white;
+  }
+}

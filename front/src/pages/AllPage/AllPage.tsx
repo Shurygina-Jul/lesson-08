@@ -11,10 +11,10 @@ const b = block('all-page')
 export const AllPage: React.FC<Props> = () => {
   return (
     <div className={b()}>
-      <Link to = '/ref/genres'> Жанры</Link>
-      <Link to = '/ref/publishers'> Издательства</Link>
-      <Link to = '/ref/authors'> Авторы</Link>
-      <Link to = '/ref/languages'> Языки</Link>
+      <Link to = '/ref/genres' className={b('link')}> Жанры</Link>
+      <Link to = '/ref/publishers' className={b('link')}> Издательства</Link>
+      <Link to = '/ref/authors' className={b('link')}> Авторы</Link>
+      <Link to = '/ref/languages' className={b('link')}> Языки</Link>
     </div>
   )
 }

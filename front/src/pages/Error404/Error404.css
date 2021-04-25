@@ -1,1 +1,8 @@
 
+.error404{
+color: white;
+
+  &__img{
+    width: 50%;
+  }
+}
