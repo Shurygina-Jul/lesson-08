@@ -3,20 +3,20 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Card } from '../../components/Card/Card'
 import { Spinner } from '../../components/Spinner/Spinner'
-import { useLanguageGetAll } from '../../hooks/useLanguageGetAll'
+import { useAuthorsGetAll } from '../../hooks/useAuthorsGetAll'
 import { BasePageProps } from '../../types/base'
-import './LanguageAllPage.css'
+import './AuthorsAllPage.css'
 
 interface Props extends BasePageProps {
 }
 
-const b = block('language-all-page')
+const b = block('authors-all-page')
 
-export const LanguageAllPage: React.FC<Props> = () => {
-  const { data, loading } = useLanguageGetAll()
+export const AuthorsAllPage: React.FC<Props> = () => {
+  const { data, loading } = useAuthorsGetAll()
 
   return (
-    <Card title={'Языки'} className={b()}>
+    <Card title={'Авторы'} className={b()}>
       <div className={b('content')}>
         {loading && (
           <Spinner size={32} />
@@ -25,17 +25,15 @@ export const LanguageAllPage: React.FC<Props> = () => {
           <ul className={b('list')}>
             {data.map(item => (
               <li key={item.id}>
-                <Link to={`/ref/languages/${item.id}`}>{item.name}</Link>
-
+                <Link to={`/ref/authors/${item.id}`}>{item.name}</Link>
               </li>
             ))}
           </ul>
         ) : (
           <p>Ничего не найдено</p>
-
         )}
       </div>
-      <Link to={`/ref/languages/create`}>Добавить язык</Link>
+      <Link to={`/ref/authors/create`}>Добавить автора</Link>
     </Card>
   )
 }

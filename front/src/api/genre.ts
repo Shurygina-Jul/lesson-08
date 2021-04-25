@@ -22,3 +22,4 @@ export const apiGenreUpdate = async (params: Genre.Data): Promise<Genre.Data> =>
   const { data } = await ApiService(true).put<Genre.Data>('/genres', params)
   return data
 }
+

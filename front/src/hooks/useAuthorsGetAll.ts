@@ -1,19 +1,19 @@
 import { useEffect, useState } from 'react'
-import { apiLanguageGetAll } from '../api/lauguage'
-import { Language } from '../types/language'
+import { apiAuthorsGetAll } from '../api/authors'
+import { Authors } from '../types/authors'
 
-interface UseLanguageGetAll {
-  data: Language.Data[],
+interface UseAuthorsGetAll {
+  data: Authors.Data[],
   loading: boolean;
 }
 
-export const useLanguageGetAll = (): UseLanguageGetAll => {
+export const useAuthorsGetAll = (): UseAuthorsGetAll => {
   const [loading, setLoading] = useState<boolean>(false)
-  const [data, setData] = useState<Language.Data[]>([])
+  const [data, setData] = useState<Authors.Data[]>([])
 
   useEffect(() => {
     setLoading(true)
-    apiLanguageGetAll()
+    apiAuthorsGetAll()
       .then(setData)
       .catch(console.error)
       .then(() => setLoading(false))

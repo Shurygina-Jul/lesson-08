@@ -1,4 +1,4 @@
-export declare namespace Publisher {
+export declare namespace Authors {
   interface Data {
     id: number;
     name: string;
@@ -6,12 +6,6 @@ export declare namespace Publisher {
   namespace Create {
     interface Params {
       name: string;
-    }
-  }
-
-  namespace All {
-    interface Search {
-      search?: string;
     }
   }
 }

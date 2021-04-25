@@ -1,5 +1,6 @@
 import block from 'bem-cn'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Card } from '../../components/Card/Card'
 import { BasePageProps } from '../../types/base'
 import './CatalogPage.css'
@@ -38,11 +39,12 @@ export const CatalogPage: React.FC<Props> = ({ match }) => {
   return (
     <div className={b()}>
       <Card title={'Каталог'}>
-        {/*<Select<User>*/}
-        {/*  data={users}*/}
-        {/*  renderValue={item => `${item.id}`}*/}
-        {/*  renderLabel={item => item.name + ' ' + item.age}*/}
-        {/*/>*/}
+      <Link
+      className={b('title')}
+      to={'/ref'}
+    >
+    Перейти к справочникам
+    </Link>
       </Card>
     </div>
   )

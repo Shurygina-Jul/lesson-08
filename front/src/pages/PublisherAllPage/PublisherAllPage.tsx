@@ -47,6 +47,7 @@ export const PublisherAllPage: React.FC<Props> = () => {
           <p>Ничего не найдено</p>
         )}
       </div>
+      <Link to={`/ref/publishers/create`}>Добавить издательство</Link>
     </Card>
   )
 }

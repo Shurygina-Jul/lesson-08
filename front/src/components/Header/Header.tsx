@@ -15,7 +15,7 @@ export const Header: React.FC<Props> = ({ className = '', right }) => (
   <header className={b({}).mix(className)}>
     <Link
       className={b('title')}
-      to={'/'}
+      to={'/ref'}
     >
       Catalog
     </Link>

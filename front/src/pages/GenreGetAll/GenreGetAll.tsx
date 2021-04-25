@@ -7,7 +7,7 @@ import { Input } from '../../components/Input/Input'
 import { Spinner } from '../../components/Spinner/Spinner'
 import { useGenreGetAll } from '../../hooks/useGenreGetAll '
 import { BasePageProps } from '../../types/base'
-import './PublisherAllPage.css'
+import './GenreAllPage.css'
 
 interface Props extends BasePageProps {
 }
@@ -47,6 +47,7 @@ export const GenreAllPage: React.FC<Props> = () => {
           <p>Ничего не найдено</p>
         )}
       </div>
+      <Link to={`/ref/genres/create`}>Добавить жанр</Link>
     </Card>
   )
 }
